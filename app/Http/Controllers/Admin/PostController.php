@@ -47,7 +47,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'slug' => 'required|string|max:100|unique:posts',
+            'category' => 'required|integer|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'integer|exists:tags,id',
+            'image' => 'required_without:content|nullable|url',
+            'content' => 'required_without:image|nullable|string|max:5000',
+            'excerpt' => 'nullable|string|max:200',
+        ]);
+
+        dump($request->all());
     }
 
     /**
