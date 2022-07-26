@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
+
     // static protected $slugColumnName = 'percorso';
 
     use Slugger;
+
+    protected $fillable = [
+        'title', 'content', 'excerpt', 'category_id', 'image', 'slug'
+    ];
 
     public function category() {
         return $this->belongsTo('App\Models\Category');

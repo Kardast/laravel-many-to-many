@@ -51,7 +51,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'slug' => 'required|string|max:100|unique:posts',
-            'category' => 'required|integer|exists:categories,id',
+            'category_id' => 'required|integer|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'integer|exists:tags,id',
             'image' => 'required_without:content|nullable|url',
@@ -59,7 +59,15 @@ class PostController extends Controller
             'excerpt' => 'nullable|string|max:200',
         ]);
 
-        dump($request->all());
+        $data = $request->all();
+        dump($data);
+
+        // salvataggio
+        $post = Post::create($data);
+        $post->tags()->sync($data['tags']);
+
+        return redirect()->route('admin.posts.show', ['post' => $post->id]);
+        // redirect
     }
 
     /**
@@ -70,7 +78,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
