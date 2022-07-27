@@ -39,20 +39,24 @@
                     <td>
                         <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">View</a>
                     </td>
-                    <td>
-                        <a href="{{ route('admin.posts.edit', ['post' => $post]) }}" class="btn btn-warning">Edit</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('admin.posts.destroy', ['post' => $post]) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    @if(Auth::id() == $post->user_id)
+                        <td>
+                            <a href="{{ route('admin.posts.edit', ['post' => $post]) }}" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('admin.posts.destroy', ['post' => $post]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+{{ $posts->links() }}
 
     {{-- AGGIUNGI IL DELETE CONFIRM --}}
 @endsection
