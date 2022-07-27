@@ -23,10 +23,10 @@
                         <a href="{{ route('admin.categories.show', ['category' => $category]) }}" class="btn btn-primary">View</a>
                     </td>
                     <td>
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('admin.categories.edit', ['category' => $category]) }}" class="btn btn-warning">Edit</a>
                     </td>
                     <td>
-                        <form action="#" method="post">
+                        <form action="{{ route('admin.categories.destroy', ['category' => $category]) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

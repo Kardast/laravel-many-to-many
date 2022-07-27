@@ -11,6 +11,10 @@ class Category extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'slug', 'name', 'description'
+    ];
+
     public function posts() {
         return $this->hasMany('App\Models\Post');
     }

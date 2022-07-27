@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a  class="nav-link" href="#">New Category</a>
+                <a  class="nav-link" href="{{ route('admin.categories.create') }}">New Category</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.tags.index') }}">
