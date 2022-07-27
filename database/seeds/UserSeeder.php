@@ -25,6 +25,16 @@ class UserSeeder extends Seeder
                 'email'     => 'zxcv@zxcv.zxcv',
                 'password'  => Hash::make('zxcv'),
             ],
+            [
+                'name'      => 'uiop',
+                'email'     => 'uiop@uiop.uiop',
+                'password'  => Hash::make('uiop'),
+            ],
+            [
+                'name'      => 'mnbv',
+                'email'     => 'mnbv@mnbv.mnbv',
+                'password'  => Hash::make('mnbv'),
+            ],
 
         ];
 

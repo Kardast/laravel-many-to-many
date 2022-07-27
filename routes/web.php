@@ -22,9 +22,9 @@ Auth::routes();
 
 // Route::get('/admin', 'HomeController@index')->name('admin');
 Route::middleware('auth')
-   ->namespace('Admin')
-   ->name('admin.')
-   ->prefix('admin')
+   ->namespace('Admin') // cartella DENTRO A CONTROLLERS
+   ->name('admin.') // le rotte iniziano con admin
+   ->prefix('admin') // tutti le url avranno anche la parola admin (/admin/)
    ->group(function () {
         Route::get('/', 'AdminController@dashboard')->name('dashboard');
         Route::resource('posts', 'PostController');

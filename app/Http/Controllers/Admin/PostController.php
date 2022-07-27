@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -49,17 +50,20 @@ class PostController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|string|max:100',
-            'slug' => 'required|string|max:100|unique:posts',
-            'category_id' => 'required|integer|exists:categories,id',
-            'tags' => 'nullable|array',
-            'tags.*' => 'integer|exists:tags,id',
-            'image' => 'required_without:content|nullable|url',
-            'content' => 'required_without:image|nullable|string|max:5000',
-            'excerpt' => 'nullable|string|max:200',
+            'title'         => 'required|string|max:100',
+            'slug'          => 'required|string|max:100|unique:posts',
+            'category_id'   => 'required|integer|exists:categories,id',
+            'tags'          => 'nullable|array',
+            'tags.*'        => 'integer|exists:tags,id',
+            'image'         => 'required_without:content|nullable|url',
+            'content'       => 'required_without:image|nullable|string|max:5000',
+            'excerpt'       => 'nullable|string|max:200',
         ]);
 
-        $data = $request->all();
+        $data = $request->all() + [
+            'user_id' => Auth::id(),
+        ];
+
         dump($data);
 
         // salvataggio
@@ -78,6 +82,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // $user = $post->users()->first();
+        // $category = $post->categories()->first();
+
         return view('admin.posts.show', compact('post'));
     }
 

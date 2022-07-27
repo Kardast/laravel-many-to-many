@@ -12634,3 +12634,11 @@ fieldset:disabled .btn {
   }
 }
 
+.tag {
+  display: inline-block;
+  background-color: violet;
+  padding: 0.5em;
+  border-radius: 15px;
+  margin: 0.5em;
+}
+

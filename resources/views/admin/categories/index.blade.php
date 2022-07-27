@@ -8,6 +8,7 @@
                 <th>Slug</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th colspan="*3">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +20,7 @@
                     <td>{{ $category->description }}</td>
 
                     <td>
-                        <a href="#" class="btn btn-primary">View</a>
+                        <a href="{{ route('admin.categories.show', ['category' => $category]) }}" class="btn btn-primary">View</a>
                     </td>
                     <td>
                         <a href="#" class="btn btn-warning">Edit</a>
